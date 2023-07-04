@@ -4,21 +4,21 @@ class User:
         self.last_name = last_name
         self.nickname = nickname
         self.login_attempts = login_attempts
-    
-    
+
+
     def describe_user(self):
         print(f'{self.nickname}: {self.first_name} {self.last_name}')
         print(f'Tentativas de login: {self.login_attempts}')
-    
-    
+
+
     def increment_login_attempts(self):
         self.login_attempts += 1
-        
-    
+
+
     def reset_login_attempts(self):
         self.login_attempts = 0
-    
-    
+
+
     def greet_user(self):
         print(f'Olá, {self.nickname}!')
 
@@ -33,18 +33,30 @@ user01.describe_user()
 user01.reset_login_attempts()
 user01.describe_user() """
 
+
 class Admin(User):
-    def __init__(self, first_name, last_name, nickname, login_attempts=0, privileges = []):
+    def __init__(self, first_name, last_name, nickname, login_attempts=0, privileges=[]):
         super().__init__(first_name, last_name, nickname, login_attempts)
+        self.privileges = Privileges(privileges)
+
+    """ def show_privileges(self):
+        print('PRIVILÉGIOS')
+        for p in self.privileges:
+            print(f'{p}')
+        print('----------------') """
+
+
+class Privileges():
+    def __init__(self, privileges):
         self.privileges = privileges
-    
-    
+
+
     def show_privileges(self):
         print('PRIVILÉGIOS')
         for p in self.privileges:
             print(f'{p}')
         print('----------------')
 
-
-user02 = Admin('Larissa', 'Silva', 'larisilva', 0, ['remover', 'salvar', 'editar'])
-user02.show_privileges()
+user02 = Admin('Larissa', 'Silva', 'larisilva',
+               0, ['remover', 'salvar', 'editar'])
+user02.privileges.show_privileges()
